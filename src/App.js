@@ -10,7 +10,6 @@ function App() {
     <div>
       <header>
         <Nav>
-
         </Nav>
       </header>
       <main>
