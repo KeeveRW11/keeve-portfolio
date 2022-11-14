@@ -1,6 +1,15 @@
 import React from 'react';
+import { capitalizeFirstLetter} from "..//../utils/helpers"
 
-function Nav() {
+
+function Nav(props) {
+    const {
+        categories = [],
+        setCurrentCategory,
+        currentCategory,
+        contactSelected,
+        setContactSelected
+      } = props;
 
     const handleClick = () => {
         console.log("click handled")
@@ -15,14 +24,33 @@ function Nav() {
             </button>
             <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div className="navbar-nav">
-                    <a className="nav-link active" aria-current="page" href="about" onClick={() => handleClick()}>About Me</a>
+                    <li className={`${contactSelected && 'navActive'}`}>
+                        <a className="nav-link active" aria-current="page" href="about" onClick={() => handleClick()}>About Me</a>
+                    </li>
+                    {categories.map((category) => (
+                  <li
+                    className={`mx-1 nav-link ${
+                      currentCategory.name === category.name && !contactSelected && `navActive`
+                        }`} 
+                        key={category.name}>
+                        <span
+                            onClick={() => {
+                              setCurrentCategory(category);
+                              setContactSelected(false);
+                              }}
+                              >
+                            {capitalizeFirstLetter(category.name)}
+                        </span>
+                  </li>
+                ))}
         
-                    <a className="nav-link" href="portfolio" onClick={() => handleClick()}>Portfolio</a>
+                    {/* <a className="nav-link" href="portfolio" onClick={() => handleClick()}>Portfolio</a>
         
                     <a className="nav-link" href="contact" onClick={() => handleClick()}>Contact</a>
         
-                    <a className="nav-link" href="resume" onClick={() => handleClick()}>Resume</a>
+                    <a className="nav-link" href="resume" onClick={() => handleClick()}>Resume</a> */}
                 </div>
+
             </div>
         </div>
     </nav>
