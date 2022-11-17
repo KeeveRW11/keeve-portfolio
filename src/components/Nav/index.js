@@ -1,5 +1,7 @@
-import React from 'react';
+import React, {useEffect } from 'react';
 import { capitalizeFirstLetter} from "..//../utils/helpers"
+// import { Link } from 'react-router-dom';
+
 
 
 function Nav(props) {
@@ -10,6 +12,10 @@ function Nav(props) {
         contactSelected,
         setContactSelected
       } = props;
+
+      useEffect(() => {
+        document.title = capitalizeFirstLetter(currentCategory.name);
+      }, [currentCategory]);  
 
     const handleClick = () => {
         console.log("click handled")
@@ -43,12 +49,15 @@ function Nav(props) {
                         </span>
                   </li>
                 ))}
-        
-                    {/* <a className="nav-link" href="portfolio" onClick={() => handleClick()}>Portfolio</a>
-        
+                  {/* <li>
+                    <a className="nav-link" href="portfolio" onClick={() => handleClick()}>Portfolio</a>
+                  </li>
+                  <li>
                     <a className="nav-link" href="contact" onClick={() => handleClick()}>Contact</a>
-        
-                    <a className="nav-link" href="resume" onClick={() => handleClick()}>Resume</a> */}
+                  </li>
+                  <li>
+                    <a className="nav-link" href="resume" onClick={() => handleClick()}>Resume</a>
+                  </li>   */}
                 </div>
 
             </div>
