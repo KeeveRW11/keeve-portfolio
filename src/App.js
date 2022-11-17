@@ -1,39 +1,35 @@
 // import logo from './logo.svg';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import './App.css';
 import './assets/scss/styles';
-import { useState } from 'react';
-import About from './components/About';
-import Nav from './components/Nav';
-import Project from './components/Project';
+// import { useState } from 'react';
+import Header from './components/Header';
+import Footer from './components/Footer';
+import Home from './components/project/Home';
+import About from './components/project/About';
+
 
 
 function App() {
-
-  const [categories] = useState ([
-    {
-      name: 'portfolio', description: 'Portfolio of six projects'},
-    { name: 'contact', description: 'Contact form' },
-    { name: 'resume', description: 'Resume of different skill' }
-  ]);
-
-  const [currentCategory, setCurrentCategory] = useState(categories[0]);
-
-
   return (
-    <div>
-      <header>
-          <Nav
-            categories={categories}
-            setCurrentCategory={setCurrentCategory}
-            currentCategory={currentCategory}
-          ></Nav>
-      </header>
-      <main>
-        <Project currentCategory={currentCategory}></Project>
-        <About></About>
-          
-      </main>
-    </div>
+    <body>
+      <Router>
+      <div>
+        <Header/>
+          <main>
+            <Routes>
+              <Route path={process.env.PUBLIC_URL + '/'}>
+                <Home />
+              </Route>
+              <Route path='/about-me'>
+                <About />
+              </Route>
+            </Routes> 
+          </main>
+      </div>
+      </Router>
+      <Footer />
+    </body>
   );
 }
 
