@@ -15,7 +15,7 @@ function Nav() {
                 <div className="navbar-nav">
                   <ul>
                     <li>
-                      <Link to='/about-me'>About Me</Link>
+                      <Link to='/about-me'>About</Link>
                     </li>
                     <li>
                       <Link to='/portfolio'>Portfolio</Link>
